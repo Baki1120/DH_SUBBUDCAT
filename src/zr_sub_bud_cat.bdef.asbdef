@@ -1,0 +1,74 @@
+managed implementation in class ZCL_R_SUB_BUD_CAT unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_SUB_BUD_CAT alias SubBudgetCategory
+persistent table ztb_sub_bud_cat
+draft table ztb_sub_bud_ct_d
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+with additional save
+
+{
+  field ( readonly )
+  Uuid,
+  CreatedBy,
+  CreatedAt,
+  CreatedByUser,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( numbering : managed )
+  Uuid;
+
+  field ( mandatory, features : instance )
+  ProjectNumber,
+  SubBudcatCategory,
+  CampusCode,
+  SubBudcatName;
+
+
+  // side effect events
+  event ApiCalled for side effects;
+  determination setActive on modify { create; }
+  validation validateData on save { create; field ProjectNumber, SubBudcatCategory; }
+  side effects
+  { field Active affects $self;
+    event ApiCalled affects field ( UuidApi, Status, Message, Criticality );
+  }
+
+
+
+  create;
+  update;
+  delete ( features : instance );
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action ( features : instance ) Edit;
+  draft action Resume;
+  draft determine action Prepare
+  {
+    validation validateData;
+  }
+
+  mapping for ztb_sub_bud_cat
+    {
+      Uuid               = uuid;
+      ProjectNumber      = project_number;
+      CampusCode         = campus_code;
+      SubBudcatCategory  = sub_budcat_number;
+      SubBudcatName      = sub_budcat_name;
+      BudgetCategoryCode = sub_budcat_code;
+      Active             = active;
+      UuidApi            = uuid_api;
+      Message            = message;
+      Status             = status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}

@@ -1,0 +1,13 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_SUB_BUD_CAT'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_SUB_BUD_CAT'
+  }
+}
+define service ZUI_SUB_BUD_CAT_O4
+  provider contracts odata_v4_ui {
+  expose ZC_SUB_BUD_CAT    as SubBudgetCategory;
+  expose ZC_SUB_BUDCAT_LOG as ChangeDocs;
+}

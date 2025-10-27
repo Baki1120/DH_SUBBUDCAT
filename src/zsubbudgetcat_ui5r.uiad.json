@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "RCUH Sub Budget Category Mapping Table",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "RCUH Sub Budget Category Mapping Table"
+  },
+  "ui5AppDetails": {
+    "appId": "subbudgetcategory"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_CB0296F88EA4E1FD2669B81C991079F4FBE74D6E_TM",
+    "semanticObject": "zsubbudcat",
+    "action": "display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_CB0296F88EA4E1FD2669B81C991079F4FBE74D6E_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "RCUH Sub Budget Category Mapping Table",
+        "subtitle": "Manage and Display Sub Budget Category"
+      }
+    }
+  ]
+}
